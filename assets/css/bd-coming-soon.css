@@ -71,3 +71,8 @@ p {
     background-color: #000000;
     color: rgb(255, 255, 255); }
 /*# sourceMappingURL=bd-coming-soon.css.map */
+
+.center-container {
+  display: flex;
+  justify-content: center;
+}
