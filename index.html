@@ -10,6 +10,196 @@
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/haskaz.css">
+    <style>
+        .moving-image {
+            position: absolute;
+            width: 150px;
+            /* Adjust size as needed */
+            height: auto;
+        }
+
+        /* Circular movement */
+        .circle-move {
+            animation: moveCircle 10s infinite linear;
+        }
+
+        /* Diagonal movement */
+        .diagonal-move {
+            animation: moveDiagonal 8s infinite linear;
+        }
+
+        /* Bounce movement */
+        .bounce-move {
+            animation: moveBounce 6s infinite linear;
+        }
+
+        @keyframes moveCircle {
+            0% {
+                left: 0;
+                top: 50%;
+            }
+
+            25% {
+                left: 50%;
+                top: 0;
+            }
+
+            50% {
+                left: 100%;
+                top: 50%;
+            }
+
+            75% {
+                left: 50%;
+                top: 100%;
+            }
+
+            100% {
+                left: 0;
+                top: 50%;
+            }
+        }
+
+        @keyframes moveDiagonal {
+            0% {
+                left: 0;
+                top: 0;
+            }
+
+            50% {
+                left: calc(100% - 150px);
+                top: calc(100% - 150px);
+            }
+
+            100% {
+                left: 0;
+                top: 0;
+            }
+        }
+
+        @keyframes moveBounce {
+
+            0%,
+            100% {
+                left: 50%;
+                top: 0;
+            }
+
+            50% {
+                left: 50%;
+                top: calc(100% - 150px);
+            }
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .center {
+            display: block;
+            width: 300px;
+            /* Bigger size - adjust this value as needed */
+            height: auto;
+            margin: 0 auto;
+            transition: transform 0.3s;
+        }
+
+        .bounce-animation {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .rotate-animation {
+            animation: rotate 4s infinite linear;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .shake-animation {
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        /* Center the image in the middle of the page */
+        .brand {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+        }
+    </style>
 </head>
 
 
@@ -17,18 +207,29 @@
 <body class="center-container">
     <div style="align-items:center" class="center-container">
         <a class="brand" href="#">
-            <img src="assets/images/logo.png" alt="logo" class="center">
+            <img src="assets/images/cafer_img.jpg" alt="logo" class="center bounce-animation">
+            <h1 style="text-align: center; color: red;">Best Greek Müteahhit Cafer Coruhlu</h1>
+            <h1 style="text-align: center; color: red;">For every construction just call</h1>
         </a>
-        <h1 style="text-align: center; color: aliceblue;">We're coming soon</h1>
-        <!-- <p class="page-description">Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiu sit amet
-            consectetur -->
         </p>
-        <p style="color: aliceblue;">Stay connected</p>
+
         <nav class="footer-social-links">
-            <a href="https://www.instagram.com/haskaztrading/" class="social-link"><i class="mdi mdi-instagram"></i></a>
-            <a href="mailto:haskaztrading@gmail.com" class="social-link"><i class="mdi mdi-google"></i></a>
-            <a href="tel:+90 (532) 290 06 98" class="social-link"><i class="mdi mdi-phone"></i></a>
         </nav>
+    </div>
+
+    <!-- First image with circular movement -->
+    <img src="assets/images/GreeceFlag.webp" class="moving-image circle-move" alt="Greece Flag">
+
+    <!-- Second image with diagonal movement -->
+    <img src="assets/images/GreeceFlag.webp" class="moving-image diagonal-move" alt="Second Image">
+
+    <!-- Third image with bounce movement -->
+    <img src="assets/images/GreeceFlag.webp" class="moving-image bounce-move" alt="Third Image">
+
+    <div class="music-player">
+        <iframe width="300" height="auto" src="https://www.youtube.com/embed/yjjLTE4zVDk?autoplay=1&controls=1"
+            title="Background Music" frameborder="0" allow="autoplay; clipboard-write; encrypted-media" allowfullscreen>
+        </iframe>
     </div>
 
 
@@ -36,3 +237,15 @@
 
 
 </body>
+<script>
+    // Function to start playing when user interacts with the page
+    function enableAutoplay() {
+        var iframe = document.querySelector('.music-player iframe');
+        var src = iframe.src;
+        iframe.src = src.replace('mute=0', 'mute=0&autoplay=1');
+        document.removeEventListener('click', enableAutoplay);
+    }
+
+    // Add click listener to the document
+    document.addEventListener('click', enableAutoplay);
+</script>
